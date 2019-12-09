@@ -50,7 +50,15 @@ class UserController extends AdminController
         });
 
         $grid->column('id', __('ID'));
-        $grid->column('invitation_code', __('邀请码'));
+        $grid->column('invitation_code', __('邀请码'))->expand(function ($model) {
+
+            $comments = $model->contacts->map(function ($comment) {
+                return $comment->only(['id', 'name', 'mobile']);
+            });
+
+            return new Table(['ID', '姓名', '电话'], $comments->toArray());
+        });
+
         $grid->column('phone_model', '手机型号');
         $grid->column('mobile', '手机号码');
         $grid->column('activation_at', __('注册时间'));

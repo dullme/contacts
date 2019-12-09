@@ -49,6 +49,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
+    }
+
 
     /**
      * 上级邀请人
@@ -67,27 +72,5 @@ class User extends Authenticatable
     public function downLevel()
     {
         return $this->hasMany(self::class, 'pid', 'id');
-    }
-
-
-    /**
-     * 保证金记录
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function deposit()
-    {
-        return $this->hasMany(Deposit::class)
-            ->where('status', 1);
-    }
-
-
-    public function totalAmount()
-    {
-        return $this->hasMany(Withdraw::class, 'user_id', 'id')->where('status', 3);
-    }
-
-    public function withdraw()
-    {
-        return $this->hasMany(Withdraw::class, 'payer_user_id', 'id');
     }
 }
