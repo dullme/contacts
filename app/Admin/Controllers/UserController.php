@@ -156,7 +156,7 @@ class UserController extends AdminController
 
         $lastUser = User::where('pid', $pid)->count();
         $code = 0;
-        if ($lastUser) {
+        if ($lastUser > 0) {
             $code = $lastUser->id;
         }
         $data = [];
