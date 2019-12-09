@@ -88,6 +88,7 @@ class UserController extends AdminController
         $grid->disableExport();
         $grid->disableRowSelector();
         $grid->disableCreateButton();
+        $grid->disableActions();
 
         return $grid;
     }
