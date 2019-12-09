@@ -17,17 +17,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'invitation_code',
         'pid',
         'status',
-        'amount',
-        'username',
-        'name',
-        'invitation_code',
-        'bank_name',
-        'bank_card',
-        'password',
+        'phone_model',
+        'mobile',
         'remark',
-        'vip',
+        'activation_at',
     ];
 
     public function findForPassport($username) {
