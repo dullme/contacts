@@ -15,4 +15,4 @@ use Illuminate\Http\Request;
 
 
 Route::post('/contents', 'UserController@index');
-Route::get('/test', 'UserController@test');
+Route::get('/help', 'UserController@help');

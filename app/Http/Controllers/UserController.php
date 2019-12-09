@@ -67,8 +67,10 @@ class UserController extends ResponseController
         }
     }
 
-    public function test()
+    public function help()
     {
-        return $this->responseSuccess(123);
+        $helps = explode(';', config('help'));
+
+        return $this->responseSuccess($helps);
     }
 }
