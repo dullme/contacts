@@ -154,10 +154,10 @@ class UserController extends AdminController
         $count = $request->input('count');
         $pid = Auth('admin')->user()->id;
 
-        $lastUser = User::where('pid', $pid)->count();
+        $lastUser = User::where('pid', $pid)->first();
         $code = 0;
-        if ($lastUser > 0) {
-            $code = $lastUser->id;
+        if ($lastUser) {
+            $code = User::where('pid', $pid)->count();
         }
         $data = [];
         $now = Carbon::now()->toDateTimeString();
