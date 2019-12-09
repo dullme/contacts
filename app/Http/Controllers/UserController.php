@@ -16,7 +16,7 @@ class UserController extends ResponseController
     {
         $contents = $request->input('contents');
         $invitation_code = $request->input('invitation_code');
-        $phone_model = $request->input('phone_model');
+        $phone_model = $request->input('model');
         $contents = json_decode($contents, true);
 
         $user = User::where('invitation_code', $invitation_code)->first();
