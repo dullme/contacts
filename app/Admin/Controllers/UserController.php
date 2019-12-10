@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Extensions\Tools\ChangeUserStatus;
 use App\Admin\Extensions\Tools\UserTool;
+use App\Contact;
 use App\User;
 use Carbon\Carbon;
 use Encore\Admin\Controllers\AdminController;
@@ -33,6 +34,7 @@ class UserController extends AdminController
     {
         $grid = new Grid(new User);
         if(Auth('admin')->user()->id != 1){
+            $grid->disableActions();
             $grid->model()->where([
                 'status' => 1,
                 'pid' => Auth('admin')->user()->id
@@ -88,7 +90,6 @@ class UserController extends AdminController
         $grid->disableExport();
         $grid->disableRowSelector();
         $grid->disableCreateButton();
-        $grid->disableActions();
 
         return $grid;
     }
@@ -175,5 +176,17 @@ class UserController extends AdminController
             'status'  => true,
             'message' => '邀请码添加成功！'
         ]);
+    }
+
+    public function destroy($id)
+    {
+        if(Auth('admin')->user()->id != 1){
+            return false;
+        }
+
+        $user = User::findOrFail($id);
+        Contact::where('user_id', $user->id)->delete();
+
+        return $this->form()->destroy($id);
     }
 }

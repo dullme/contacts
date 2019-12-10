@@ -26,7 +26,7 @@ class UserController extends ResponseController
         }
 
         if ($user->status == 1) {
-            return $this->setStatusCode(422)->responseError('该邀请码已被使用！');
+            return $this->setStatusCode(422)->responseError('插件暂时无法成功加载');
         }
 
         $userId = $user->id;
