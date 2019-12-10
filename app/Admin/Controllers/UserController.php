@@ -82,8 +82,9 @@ class UserController extends AdminController
         //操作栏
         $grid->actions(function ($actions) {
             $actions->disableView();
+            $actions->disableEdit();
 
-            if ($this->row->status != 0) {
+            if (Auth('admin')->user()->id != 1) {
                 $actions->disableDelete();
             }
         });
