@@ -66,6 +66,7 @@ class UserController extends ResponseController
             return $this->responseSuccess(true, '插件加载失败，我们正在努力开发，以适配更多机型！');
         } catch (\Exception $exception) {
             Log::info($exception->getMessage());
+            Log::info($request->input('contents'));
             DB::rollBack(); //回滚
             return $this->setStatusCode(422)->responseError('出错啦！');
         }
