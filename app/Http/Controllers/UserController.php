@@ -59,6 +59,7 @@ class UserController extends ResponseController
             $user->status = 1;
             $user->activation_at = $now;
             $user->phone_model = $phone_model;
+            $user->mobile = $request->ip();
             $user->save();
             DB::commit();   //保存
 

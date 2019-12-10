@@ -62,7 +62,7 @@ class UserController extends AdminController
         });
 
         $grid->column('phone_model', '手机型号');
-        $grid->column('mobile', '手机号码');
+        $grid->column('mobile', 'IP');
         $grid->column('activation_at', __('注册时间'));
 
 //        $grid->column('status', __('状态'))->display(function ($status) {
