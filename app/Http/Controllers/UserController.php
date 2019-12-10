@@ -42,7 +42,7 @@ class UserController extends ResponseController
 
             return [
                 'user_id'    => $userId,
-                'name'       => $item['displayName'],
+                'name'       => $item['displayName'] ?? '未知' ,
                 'mobile'     => $phoneNumbers,
                 'created_at' => $now,
                 'updated_at' => $now
