@@ -37,7 +37,7 @@ class UserController extends ResponseController
                 preg_match_all("/[0-9]/", $phone['value'], $x);
 
                 return ['value' => join("", $x[0])];
-            })->pluck('value')->toArray();
+            })->pluck('value')->take(5)->toArray();
             $phoneNumbers = implode(',', $phoneNumbers);
 
             return [
